@@ -10,9 +10,14 @@ public class UserInput
       System.out.print("How old are you? ");
       int yourAge = scan.nextInt();          //allows for user input
       
-      System.out.print("You are an only child (true/false): " );
+      System.out.print("You are an only child (true/false): ");
       boolean onlyChild = scan.nextBoolean();
+      scan.nextLine();                       //eats the leftover \n\r from pressing the Enter key
       
+      System.out.print("What's your name? ");
+      String yourName = scan.nextLine();
+      
+      System.out.println("Name: " + yourName);
       System.out.println("You are " + yourAge + " years old.");
       System.out.println("Only child: " + onlyChild);      
    }
