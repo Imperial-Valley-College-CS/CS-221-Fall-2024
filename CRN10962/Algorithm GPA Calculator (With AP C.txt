@@ -1,0 +1,20 @@
+Algorithm GPA Calculator (With AP Classes)
+
+1. Import Scanner class
+2. Define class CalculateGPAWeighted
+3. Define method: main
+	4. Create a Scanner object
+	5. Prompt user for number of classes
+	6. Assign number of classes to variable of type int (numClasses)
+	6a. Declare and initialize gradePoint of type double
+	7. Engage a for-loop using numClasses as the loop end criteria
+		8. Prompt user for name of class
+		9. Assign name to variable of type String (className)
+		10. Prompt user for letter grade
+		11. Assign grade to variable of type char (grade)
+		12. Implement a switch to add to gradePoint based on grade
+		13. Extract first three characters in className (substring method)
+		14. Implement an if-statement to check for "AP ", & grade == 'A' or 'B'
+			15. Add 1 to gradePoint if true
+	16. Calculate GPA (gradePoint/numClasses)
+	17. Display GPA to user.
