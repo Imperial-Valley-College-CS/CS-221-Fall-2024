@@ -1,0 +1,16 @@
+1. import Scanner class
+2. define class (Hangman)
+3. define main method
+	4. Create a Scanner object
+	5. Declare and initialize word (String)
+	6. Declare and initialize guess (String)
+	7. Implement a while loop ( !guess.equals(word) )
+		8. Ask user for a letter (use print statement)
+		9. Scan letter entered by user ( scan.next().charAt(0) )
+		10. Declare and initialize empty String 
+		11. Implement loop to traverse word
+			12. if letter equals word.charAt(i)
+				13. empty += letter
+			14. else
+				15. empty += guess.charAt(i)
+		16. update guess to equal empty
