@@ -8,7 +8,24 @@ public class StringMethods
       System.out.println( ans1 );
       System.out.println( ans2 );
       System.out.println( ans3 );
+      int result = indexOf("Coffee and cake", 's');
+      System.out.println( result );
+      System.out.println( (int)(22*Math.random()+1) );
    }//end main
+   
+   public static int indexOf(String phrase, char letter)
+   {
+      int places = -1;
+      for( int i = 0; i < phrase.length(); i++)
+      {
+         if( phrase.charAt(i) == letter )
+         {
+            places = i;
+            break;
+         }
+      }
+      return places;
+   }
    
    public static String reverse(String phrase)
    {
