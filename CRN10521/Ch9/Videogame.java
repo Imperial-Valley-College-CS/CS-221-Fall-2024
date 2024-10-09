@@ -3,7 +3,8 @@ import java.util.GregorianCalendar;
 public class Videogame
 {
    //data fields (instance variables or static variables)
-   public String title, genre;
+   public static boolean userInteractive = true;
+   private String title, genre;
    private int sales;
    private GregorianCalendar releaseDate;
    
