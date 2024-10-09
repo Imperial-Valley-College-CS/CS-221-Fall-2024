@@ -8,6 +8,7 @@ public class TestVideogame
       String v2Title =  v2.getTitle();
       System.out.println(v2Title);
       Videogame v3 = new Videogame("Super Mario Bros", 58000000,"platformer","September 13, 1985");
-      System.out.println( v1.title );
+      
+      System.out.println( (int)(17*Math.random()) );
    }
 }
