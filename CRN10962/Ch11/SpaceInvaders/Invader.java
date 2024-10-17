@@ -13,7 +13,6 @@ public class Invader
    public Invader(String type, int x, int y)
    {
       //this.pos = new Position(x,y);
-      System.out.println( filename );
       if( type.equals("squid") )
       {
          this.filename += "SquidMatrix.txt";
