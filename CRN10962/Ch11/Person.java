@@ -34,12 +34,17 @@ public class Person
    public int getAge()
    {
       GregorianCalendar today = new GregorianCalendar();
-      return today.compareTo(this.dob);
+      long t2 = today.getTimeInMillis();
+      long t1 = this.dob.getTimeInMillis();
+      long deltaT = t2-t1;
+      int diffInDays = (int)(deltaT/(1000.0*60*60*24));
+      this.age = (int)(diffInDays/365.2422);
+      return this.age;
    }
    
    @Override
    public String toString()
    {
-      return "Name: " + this.name + "\nAge: " + this.age;
+      return "Name: " + this.name + "\nAge: " + getAge();
    }
 }

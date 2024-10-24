@@ -11,4 +11,10 @@ public class Student extends Person
       this.gnumber = gNum;
    }
    
+   @Override
+   public String toString()
+   {
+      return super.toString() + "\nG-Number: " + this.gnumber;
+   }
+   
 }
