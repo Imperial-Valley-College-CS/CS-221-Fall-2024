@@ -36,4 +36,10 @@ public class Person
       GregorianCalendar today = new GregorianCalendar();
       return today.compareTo(this.dob);
    }
+   
+   @Override
+   public String toString()
+   {
+      return "Name: " + this.name + "\nAge: " + this.age;
+   }
 }
