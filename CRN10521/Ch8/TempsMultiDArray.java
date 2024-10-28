@@ -9,7 +9,36 @@ public class TempsMultiDArray
       int[][] temps = readData(file);
       int count = tempsBelow( temps, 80 );
       System.out.println( "Temps below 80degF: " + count );
+      double avg = averageTemp( temps, 0);
+      System.out.printf( "Average temp for week 0: %.1f", avg );
    }//end main
+   
+   public static double averageTemp( int[][] arr, int row )
+   {
+      double sum = 0;
+      for( int x : arr[row] )
+         sum += x;
+      return sum/arr[row].length;
+   }//end averageTemp
+   
+   public static int tempsBelow( int[][] arr, int val )
+   {
+      int count = 0;
+      for( int i = 0; i < arr.length; i++ )
+      {
+         for( int j = 0; j < arr[i].length; j++ )
+         {
+            if( arr[i][j] < val )
+               count++;
+         }
+      }
+      
+      // for( int[] row : arr )
+//          for( int x : row )
+//             if( x < val )
+//                count++;
+      return count;
+   }//end tempsBelow
    
    public static int[][] readData( String filename )
    {
