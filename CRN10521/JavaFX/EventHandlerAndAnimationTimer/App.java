@@ -55,7 +55,7 @@ public class App extends Application
    class Timer extends AnimationTimer
    {
       @Override
-      public void handle(long now)
+      public void handle(long now)        //invoked on every computational frame
       {
          System.out.println( now );       //now is current time (nanoseconds)
       }
