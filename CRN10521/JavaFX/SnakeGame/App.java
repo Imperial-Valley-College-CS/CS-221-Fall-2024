@@ -3,20 +3,29 @@ import javafx.stage.Stage;
 import javafx.scene.*;
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
+import javafx.animation.AnimationTimer;
 
 public class App extends Application
 {
    Group g = new Group();
    Scene scene = new Scene(g, Constants.WIDTH, Constants.HEIGHT, Constants.bgColor);
-   KeyHandler handleKey = new KeyHandler();
-   MouseHandler handleMouse = new MouseHandler();
+   
+   KeyHandler handleKey = new KeyHandler();           //from inner class
+   MouseHandler handleMouse = new MouseHandler();     //from inner class
+   Timer timer = new Timer();                         //from inner class
    
    //must override inherited abstract methods
    @Override
    public void start(Stage s)
    {
-      scene.setOnMouseClicked( handleMouse );   //makes mouse come to live (needs EventHandler<MouseEvent>)
-      scene.setOnKeyPressed(handleKey);      //make keyboard come to live (needs EventHandler<KeyEvent>)
+      //invokes handle method (in Timer class) on every computational frame
+      timer.start();       
+      //makes mouse come to live (needs EventHandler<MouseEvent>)                     
+      scene.setOnMouseClicked( handleMouse );   
+      //make keyboard come to live (needs EventHandler<KeyEvent>)
+      scene.setOnKeyPressed(handleKey);      
+      
+      //add scene to Stage and show Stage
       s.setScene( scene );
       s.show();
    }
@@ -39,6 +48,16 @@ public class App extends Application
       {
          System.out.flush();
          System.out.println( "X: " + e.getSceneX() + ", Y: " + e.getSceneY());
+      }
+   }
+   
+   //inner class
+   class Timer extends AnimationTimer
+   {
+      @Override
+      public void handle(long now)
+      {
+         System.out.println( now );       //now is current time (nanoseconds)
       }
    }
    
