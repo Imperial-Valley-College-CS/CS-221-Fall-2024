@@ -9,11 +9,12 @@ public class App extends Application
 {
    Group g = new Group();
    Scene scene = new Scene(g, Constants.WIDTH, Constants.HEIGHT, Constants.SCN_COLOR);
+   KeyHandler handleKey = new KeyHandler();     //object from inner class
    
    @Override
    public void start(Stage stage)
    {
-      scene.setOnKeyPressed();         //makes keyboard come alive
+      scene.setOnKeyPressed(handleKey);         //makes keyboard come alive
       stage.setScene(scene);
       stage.show();
    }//end start method
@@ -24,6 +25,7 @@ public class App extends Application
       @Override
       public void handle(KeyEvent e)
       {
+         System.out.println( e.getCode().toString() );
       }
    }
    
