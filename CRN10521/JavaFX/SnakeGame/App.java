@@ -5,16 +5,20 @@ import javafx.scene.Group;
 import javafx.event.EventHandler;
 import javafx.scene.input.*;
 import javafx.animation.AnimationTimer;
+import javafx.scene.canvas.*;
 
 public class App extends Application
 {  
+   //Canvas is a Node
+   Canvas canvas = new Canvas( Constants.WIDTH, Constants.HEIGHT );
+   GraphicsContext gc = canvas.getGraphicsContext2D();
    //Group is a Parent
-   Group root = new Group();        
+   Group root = new Group(canvas);        
    //Scene needs a Parent
    Scene scene = new Scene(root, Constants.WIDTH, Constants.HEIGHT, Constants.BG_COLOR);
    
    KeyHandler handleKey = new KeyHandler();           //from inner class
-   
+   Timer timer = new Timer();                         //from inner class
    
    
    @Override
