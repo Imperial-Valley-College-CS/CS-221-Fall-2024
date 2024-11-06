@@ -98,11 +98,18 @@ public class App extends Application
    //inner class
    class Timer extends AnimationTimer
    {
+      //time between frames in nanoseconds
+      long dt = 16000000;
+      long last = 0;
       @Override
       public void handle(long now)        //invoked on every computational frame
       {
-         updateSnake();
-         drawSnake();
+         if( now - last > 1*dt )
+         {
+            updateSnake();
+            drawSnake();
+            last = now;
+         }
       }
    }
    
