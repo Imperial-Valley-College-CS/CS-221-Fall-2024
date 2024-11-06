@@ -16,5 +16,5 @@ public class Block
    
    //getter methods
    public int getX(){ return this.x; }
-   public int setY(){ return this.y; }
+   public int getY(){ return this.y; }
 }
