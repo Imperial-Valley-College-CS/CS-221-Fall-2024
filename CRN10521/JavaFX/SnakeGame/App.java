@@ -104,7 +104,7 @@ public class App extends Application
       @Override
       public void handle(long now)        //invoked on every computational frame
       {
-         if( now - last > 1*dt )
+         if( now - last > 3*dt )
          {
             updateSnake();
             drawSnake();
