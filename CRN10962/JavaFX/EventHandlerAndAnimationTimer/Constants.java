@@ -5,5 +5,5 @@ public class Constants
    //public and static data fields
    public static double WIDTH = 600;
    public static double HEIGHT = 400;
-   public static Color SCN_COLOR = Color.BLUE;
+   public static Color BG_COLOR = Color.BLUE;
 }
