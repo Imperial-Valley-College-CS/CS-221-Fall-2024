@@ -12,6 +12,7 @@ public class Constants
    public static double HEIGHT = 533;
    public static int BLK_SIZE = 10;
    public static int N_BLKS = 3;
+   public static int FRAMES = 1;          //draw every N frames
    
    //Colors
    public static Color BG_COLOR = Color.BLACK;   

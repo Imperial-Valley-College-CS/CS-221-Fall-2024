@@ -127,7 +127,7 @@ public class App extends Application
       @Override
       public void handle(long now)        //invoked on every computational frame
       {
-         if( now - last > 2*dt )
+         if( now - last > Constants.FRAMES*dt )
          {
             updateSnake();
             drawSnake();
