@@ -1,4 +1,5 @@
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Constants
 {
@@ -14,5 +15,9 @@ public class Constants
    
    //Colors
    public static Color BG_COLOR = Color.BLACK;   
-   public static Color BLK_COLOR = Color.WHITE;
+   public static Color BLK_COLOR = Color.WHITE;  
+   public static Color TEXT_COLOR = Color.RED;
+   
+   //Fonts
+   public static Font TEXT_FONT = new Font("Comic Sans MS", 40);
 }

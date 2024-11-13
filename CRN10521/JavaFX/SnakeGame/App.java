@@ -85,6 +85,29 @@ public class App extends Application
       snake.remove( snake.size()-1 );
    }
    
+   private boolean checkBoundary()
+   {
+      Block head = snake.get(0);
+      if( head.getX() < 0 || head.getX() > Constants.WIDTH)
+         return true;
+      if( head.getY() < 0 || head.getY() > Constants.HEIGHT)
+         return true;
+         
+      return false;
+   }
+   
+   private void displayGameOver()
+   {
+      //paint entire background black (BG_COLOR)
+      gc.setFill( Constants.BG_COLOR );
+      gc.fillRect( 0, 0, Constants.WIDTH, Constants.HEIGHT);
+      
+      //paint entire background black (BG_COLOR)
+      gc.setFont( Constants.TEXT_FONT );
+      gc.setFill( Constants.TEXT_COLOR );
+      gc.fillText("GAME OVER", Constants.WIDTH/2, Constants.HEIGHT/2);
+   }
+   
    //inner class
    class KeyHandler implements EventHandler<KeyEvent>
    {
@@ -104,10 +127,15 @@ public class App extends Application
       @Override
       public void handle(long now)        //invoked on every computational frame
       {
-         if( now - last > 3*dt )
+         if( now - last > 2*dt )
          {
             updateSnake();
             drawSnake();
+            if( checkBoundary() )
+            {
+               timer.stop();
+               displayGameOver();
+            }
             last = now;
          }
       }
