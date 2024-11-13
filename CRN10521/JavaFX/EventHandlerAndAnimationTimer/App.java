@@ -1,18 +1,21 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.*;
-import javafx.event.EventHandler;
+import javafx.event.*;
 import javafx.scene.input.*;
 import javafx.animation.AnimationTimer;
 import javafx.scene.media.*;
+import javafx.scene.control.Button;
 
 public class App extends Application
 {
-   Group g = new Group();
+   Button okBttn = new Button("OK");
+   Group g = new Group();        //A group is a Parent
    Scene scene = new Scene(g, Constants.WIDTH, Constants.HEIGHT, Constants.bgColor);
    
    KeyHandler handleKey = new KeyHandler();           //from inner class
    MouseHandler handleMouse = new MouseHandler();     //from inner class
+   ButtonHandler handleOkBttn = new ButtonHandler();  //from inner class
    Timer timer = new Timer();                         //from inner class
    
    //must override inherited abstract methods
@@ -20,7 +23,11 @@ public class App extends Application
    public void start(Stage s)
    {
       //invokes handle method (in Timer class) on every computational frame
-      timer.start();       
+      timer.start();  
+      //add button to Group
+      g.getChildren().add(okBttn);     
+      //make button come to live
+      okBttn.setOnAction(handleOkBttn);
       //makes mouse come to live (needs EventHandler<MouseEvent>)                     
       scene.setOnMouseClicked( handleMouse );   
       //make keyboard come to live (needs EventHandler<KeyEvent>)
@@ -47,8 +54,18 @@ public class App extends Application
       @Override
       public void handle(MouseEvent e)      //invoked when mouse is activated (MouseEvent)        
       {
-         System.out.flush();
          System.out.println( "X: " + e.getSceneX() + ", Y: " + e.getSceneY());
+      }
+   }
+   
+   //inner class
+   class ButtonHandler implements EventHandler<ActionEvent>
+   {
+      @Override
+      public void handle(ActionEvent e)      //invoked when a button is pressed        
+      {
+         Button pressedBttn = (Button)e.getSource();
+         System.out.println( pressedBttn.getText() );
       }
    }
    
@@ -58,7 +75,7 @@ public class App extends Application
       @Override
       public void handle(long now)        //invoked on every computational frame
       {
-         System.out.println( now );       //now is current time (nanoseconds)
+         //System.out.println( now );       //now is current time (nanoseconds)
       }
    }
    
