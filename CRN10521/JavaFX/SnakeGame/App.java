@@ -22,8 +22,10 @@ public class App extends Application
    Timer timer = new Timer();                         //from inner class
    
    ArrayList<Block> snake = new ArrayList<>();        //creates an arraylist of blocks
+   Block apple = new Block(200,200);                  //declare apple (new Block)
    
-   private String direction = "";                     //snake will not move on startup
+   private String direction = "";                     //direction in which snake is moving
+   private String key = "";                           //key that is pressed
    
    @Override
    public void start(Stage stage)
@@ -48,11 +50,25 @@ public class App extends Application
       }
    }
    
+   private void updateSnack()
+   {
+      int xScale = Constants.WIDTH/Constants.BLK_SIZE;
+      int yScale = Constants.HEIGHT/Constants.BLK_SIZE;
+      int snackX = (int)(xScale*Math.random())*Constants.BLK_SIZE;
+      int snackY = (int)(yScale*Math.random())*Constants.BLK_SIZE;
+      apple.setX(snackX);
+      apple.setY(snackY);
+   }
+   
    private void drawSnake()
    {  
       //paint entire background black (BG_COLOR)
       gc.setFill( Constants.BG_COLOR );
       gc.fillRect( 0, 0, Constants.WIDTH, Constants.HEIGHT);
+      
+      //specify color of snack
+      gc.setFill( Constants.SNCK_COLOR);
+      gc.fillRect( apple.getX(), apple.getY(), Constants.BLK_SIZE, Constants.BLK_SIZE);
       
       //specify color of snake
       gc.setFill( Constants.BLK_COLOR );
@@ -60,7 +76,7 @@ public class App extends Application
       {
          //draw every block in snake
          gc.fillRect( b.getX(), b.getY(), Constants.BLK_SIZE, Constants.BLK_SIZE);   
-      }
+      }      
    }
    
    private void updateSnake()
@@ -70,19 +86,36 @@ public class App extends Application
       int headY = head.getY();         //get Y-coord of head of snake
       
       //update X or Y coord for new head of snake
-      switch( this.direction )
+      if( this.key.equals("UP") && !this.direction.equals("DOWN") )
       {
-         case "UP": headY -= Constants.BLK_SIZE; break;
-         case "DOWN": headY += Constants.BLK_SIZE; break;
-         case "RIGHT": headX += Constants.BLK_SIZE; break;
-         case "LEFT": headX -= Constants.BLK_SIZE; break;
+         headY -= Constants.BLK_SIZE;
+         this.direction = key;
+      }else if( this.key.equals("DOWN") && !this.direction.equals("UP") )
+      {
+         headY += Constants.BLK_SIZE;
+         this.direction = key;
+      }else if( this.key.equals("RIGHT") && !this.direction.equals("LEFT") )
+      { 
+         headX += Constants.BLK_SIZE;
+         this.direction = key;
+      }else if( this.key.equals("LEFT") && !this.direction.equals("RIGHT") )
+      {
+         headX -= Constants.BLK_SIZE;
+         this.direction = key;
       }
       //create new head (Block)
       Block newHead = new Block(headX, headY);
       //add new head to snake
       snake.add(0, newHead);
-      //remove tail (last block) from snake
-      snake.remove( snake.size()-1 );
+      if( newHead.getX() == apple.getX() && newHead.getY() == apple.getY() )
+      {
+         updateSnack();       //snake ate apple
+      }
+      else
+      {
+         //remove tail (last block) from snake
+         snake.remove( snake.size()-1 );
+      }
    }
    
    private boolean checkBoundary()
@@ -114,7 +147,7 @@ public class App extends Application
       @Override
       public void handle(KeyEvent e)      //invoked when key is pressed (KeyEvent)         
       {  
-         direction = e.getCode().toString();
+         key = e.getCode().toString();    //key will be "UP", "DOWN", "RIGHT" or "LEFT"
       }
    }
    

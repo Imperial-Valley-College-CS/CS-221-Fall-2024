@@ -8,16 +8,17 @@ public class Constants
    public static int START_Y = 50;
 
    //Length/Dimensions
-   public static double WIDTH = 800;
-   public static double HEIGHT = 533;
+   public static int WIDTH = 800;
+   public static int HEIGHT = 533;
    public static int BLK_SIZE = 10;
    public static int N_BLKS = 3;
-   public static int FRAMES = 1;          //draw every N frames
+   public static int FRAMES = 3;          //draw every N frames
    
    //Colors
    public static Color BG_COLOR = Color.BLACK;   
    public static Color BLK_COLOR = Color.WHITE;  
    public static Color TEXT_COLOR = Color.RED;
+   public static Color SNCK_COLOR = Color.BLUE;
    
    //Fonts
    public static Font TEXT_FONT = new Font("Comic Sans MS", 40);
