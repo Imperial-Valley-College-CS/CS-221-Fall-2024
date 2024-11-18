@@ -24,8 +24,7 @@ public class App extends Application
    ArrayList<Block> snake = new ArrayList<>();        //creates an arraylist of blocks
    Block apple = new Block(200,200);                  //declare apple (new Block)
    
-   private String direction = "";                     //direction in which snake is moving
-   private String key = "";                           //key that is pressed
+   private String direction = "RIGHT";                     //direction in which snake is moving
    
    @Override
    public void start(Stage stage)
@@ -86,22 +85,12 @@ public class App extends Application
       int headY = head.getY();         //get Y-coord of head of snake
       
       //update X or Y coord for new head of snake
-      if( this.key.equals("UP") && !this.direction.equals("DOWN") )
+      switch( this.direction )
       {
-         headY -= Constants.BLK_SIZE;
-         this.direction = key;
-      }else if( this.key.equals("DOWN") && !this.direction.equals("UP") )
-      {
-         headY += Constants.BLK_SIZE;
-         this.direction = key;
-      }else if( this.key.equals("RIGHT") && !this.direction.equals("LEFT") )
-      { 
-         headX += Constants.BLK_SIZE;
-         this.direction = key;
-      }else if( this.key.equals("LEFT") && !this.direction.equals("RIGHT") )
-      {
-         headX -= Constants.BLK_SIZE;
-         this.direction = key;
+         case "UP": headY -= Constants.BLK_SIZE; break;
+         case "DOWN": headY += Constants.BLK_SIZE; break;
+         case "RIGHT": headX += Constants.BLK_SIZE; break;
+         case "LEFT": headX -= Constants.BLK_SIZE; break;
       }
       //create new head (Block)
       Block newHead = new Block(headX, headY);
@@ -129,6 +118,19 @@ public class App extends Application
       return false;
    }
    
+   private boolean collided()
+   {
+      Block head = snake.get(0);
+      
+      for( int i = 1; i < snake.size(); i++ )
+      {
+         if( head.getX() == snake.get(i).getX() && head.getY() == snake.get(i).getY() )
+            return true;
+      }
+      
+      return false;
+   }
+   
    private void displayGameOver()
    {
       //paint entire background black (BG_COLOR)
@@ -147,7 +149,16 @@ public class App extends Application
       @Override
       public void handle(KeyEvent e)      //invoked when key is pressed (KeyEvent)         
       {  
-         key = e.getCode().toString();    //key will be "UP", "DOWN", "RIGHT" or "LEFT"
+         String key = e.getCode().toString();    //key will be "UP", "DOWN", "RIGHT" or "LEFT"
+         if( key.equals("UP") && !direction.equals("DOWN") )
+            direction = key;
+         if( key.equals("DOWN") && !direction.equals("UP") )
+            direction = key;
+         if( key.equals("RIGHT") && !direction.equals("LEFT") )
+            direction = key;
+         if( key.equals("LEFT") && !direction.equals("RIGHT") )
+            direction = key;
+            
       }
    }
    
@@ -164,7 +175,7 @@ public class App extends Application
          {
             updateSnake();
             drawSnake();
-            if( checkBoundary() )
+            if( checkBoundary() || collided() )
             {
                timer.stop();
                displayGameOver();
