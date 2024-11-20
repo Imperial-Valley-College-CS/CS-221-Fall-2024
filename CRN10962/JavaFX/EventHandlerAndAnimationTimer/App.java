@@ -34,7 +34,7 @@ public class App extends Application
       //makes mouse come to live (needs EventHandler<MouseEvent>)                     
       scene.setOnMouseClicked( handleMouse );   
       //make keyboard come to live (needs EventHandler<KeyEvent>)
-      scene.setOnKeyPressed(handleKey);      
+      scene.setOnKeyPressed( handleKey );      
       
       //add scene to Stage and show Stage
       s.setScene( scene );
